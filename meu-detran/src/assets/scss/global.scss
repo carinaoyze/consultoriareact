@@ -1,0 +1,53 @@
+@import '~bootstrap/scss/bootstrap';
+
+.icone-padrao {
+    display: flex;
+    border-radius: 60px;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #E7E9EC;
+    margin-right: 10px;
+}
+
+form {
+    button.btn {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.modal-title {
+    color: #5D697B;
+    text-transform: uppercase;
+    font-weight: 700!important;
+    font-size: 25px;
+    width: 100%;
+}
+
+.modal-header {
+    flex-direction: column;
+    text-align: left;
+    @extend .px-0;
+
+    p {
+        margin: 0;
+        width: 100%;
+        color: #5D697B;
+    }
+
+    .btn-close {
+        order: -1;
+    }
+}
+
+.modal-body {
+    @extend .px-0;
+}
+
+.modal-content {
+    @extend .px-5;
+    @extend .py-3;
+}

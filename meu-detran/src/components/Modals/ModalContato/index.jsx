@@ -8,7 +8,7 @@ export default function ModalContato() {
     return (
         <>
             <Button onClick={() => setStatus(true)} variant="outline-info" className="w-100 py-2">
-                <i class="fas fa-headset fs-5 px-1 d-inline-block"></i> Fale conosco
+                <i className="fas fa-headset fs-5 px-1 d-inline-block"></i> Fale conosco
             </Button>
 
             <Modal size="lg" centered show={status} onHide={() => setStatus(false)}>

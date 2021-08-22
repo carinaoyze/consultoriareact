@@ -12,7 +12,7 @@ export default function HabilitacaoPage() {
                 <header className="text-secondary mb-3">
                     <h4 className="text-uppercase fw-bold fs-4 d-flex align-items-center">
                         <div className="icone-padrao">
-                            <i class="fas fa-id-card"></i>
+                            <i className="fas fa-id-card"></i>
                         </div> 
                         Habilitação
                     </h4>

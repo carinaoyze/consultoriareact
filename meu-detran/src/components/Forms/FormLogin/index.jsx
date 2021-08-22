@@ -2,8 +2,10 @@ import React from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import useValidations from '../../../hooks/useValidations';
 import useFormValidator from '../../../hooks/useFormValidator';
+import useMasks from '../../../hooks/useMasks';
 
 export default function FormLogin() {
+    const { cpfMask } = useMasks();
     const { isCPF, isEmpty } = useValidations();
     const { values, errors, isFormValid, validate, resetValidator } = useFormValidator({
         cpf: isCPF('CPF inválido!'),
@@ -21,7 +23,7 @@ export default function FormLogin() {
         <Form onSubmit={handleFormLogin}>
             <Form.Group className="mb-3">
                 <FloatingLabel label="CPF *" className="mb-3">
-                    <Form.Control type="text" placeholder="CPF *" name="cpf" onBlur={ validate } onChange={ validate } isInvalid={errors.cpf} isValid={values.cpf && !errors.cpf} />
+                    <Form.Control type="text" placeholder="CPF *" name="cpf" onInput={ cpfMask } onBlur={ validate } onChange={ validate } isInvalid={errors.cpf} isValid={values.cpf && !errors.cpf} />
                     <Form.Control.Feedback type="invalid">
                         { errors.cpf }
                     </Form.Control.Feedback>

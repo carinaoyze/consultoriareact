@@ -2,8 +2,10 @@ import React from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import useValidations from '../../../hooks/useValidations';
 import useFormValidator from '../../../hooks/useFormValidator';
+import useMasks from '../../../hooks/useMasks';
 
 export default function FormContato() {
+    const { cpfMask, telOuCelMask } = useMasks();
     const { isCPF, isEmpty, isEmail, isTelefoneOuCelular } = useValidations();
     const { values, errors, isFormValid, validate, resetValidator } = useFormValidator({
         cpf: isCPF('CPF inválido!'),
@@ -23,7 +25,7 @@ export default function FormContato() {
         <Form onSubmit={handleFormLogin}>
             <Form.Group className="mb-3">
                 <FloatingLabel label="CPF *" className="mb-3">
-                    <Form.Control type="text" placeholder="CPF *" name="cpf" onBlur={ validate } onChange={ validate } isInvalid={errors.cpf} isValid={values.cpf && !errors.cpf} />
+                    <Form.Control type="text" placeholder="CPF *" name="cpf" onInput={ cpfMask } onBlur={ validate } onChange={ validate } isInvalid={errors.cpf} isValid={values.cpf && !errors.cpf} />
                     <Form.Control.Feedback type="invalid">
                         { errors.cpf }
                     </Form.Control.Feedback>
@@ -50,7 +52,7 @@ export default function FormContato() {
 
             <Form.Group className="mb-3">
                 <FloatingLabel label="Telefone ou Celular *" className="mb-3">
-                    <Form.Control type="tel" placeholder="Telefone ou Celular *" name="tel" onBlur={ validate } onChange={ validate } isInvalid={errors.tel} isValid={values.tel && !errors.tel} />
+                    <Form.Control type="tel" placeholder="Telefone ou Celular *" name="tel" onInput={ telOuCelMask } onBlur={ validate } onChange={ validate } isInvalid={errors.tel} isValid={values.tel && !errors.tel} />
                     <Form.Control.Feedback type="invalid">
                         { errors.tel }
                     </Form.Control.Feedback>

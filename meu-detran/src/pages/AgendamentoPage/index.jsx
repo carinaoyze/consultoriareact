@@ -12,7 +12,7 @@ export default function AgendamentoPage() {
                 <header className="text-secondary mb-3">
                     <h4 className="text-uppercase fw-bold fs-4 d-flex align-items-center">
                         <div className="icone-padrao">
-                            <i class="far fa-calendar-check"></i>
+                            <i className="far fa-calendar-check"></i>
                         </div> 
                         Agendamento
                     </h4>

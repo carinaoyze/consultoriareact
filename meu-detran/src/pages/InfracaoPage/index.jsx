@@ -12,7 +12,7 @@ export default function InfracaoPage() {
                 <header className="text-secondary mb-3">
                     <h4 className="text-uppercase fw-bold fs-4 d-flex align-items-center">
                         <div className="icone-padrao">
-                            <i class="fas fa-exclamation-triangle"></i>
+                            <i className="fas fa-exclamation-triangle"></i>
                         </div> 
                         Infração
                     </h4>

@@ -12,7 +12,7 @@ export default function CredenciamentoPage() {
                 <header className="text-secondary mb-3">
                     <h4 className="text-uppercase fw-bold fs-4 d-flex align-items-center">
                         <div className="icone-padrao">
-                            <i class="far fa-clipboard"></i>
+                            <i className="far fa-clipboard"></i>
                         </div> 
                         Credenciamento
                     </h4>

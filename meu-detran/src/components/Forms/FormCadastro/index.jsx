@@ -2,8 +2,10 @@ import React from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import useValidations from '../../../hooks/useValidations';
 import useFormValidator from '../../../hooks/useFormValidator';
+import useMasks from '../../../hooks/useMasks';
 
 export default function FormCadastro() {
+    const { cpfMask, dataMask, celularMask } = useMasks();
     const { isCPF, isEmpty, isEmail, isCelular, isData } = useValidations();
     const { values, errors, isFormValid, validate, resetValidator } = useFormValidator({
         cpf: isCPF('CPF inválido!'),
@@ -28,7 +30,7 @@ export default function FormCadastro() {
         <Form onSubmit={handleFormLogin}>
             <Form.Group className="mb-3">
                 <FloatingLabel label="CPF *" className="mb-3">
-                    <Form.Control type="text" placeholder="CPF *" name="cpf" onBlur={ validate } onChange={ validate } isInvalid={errors.cpf} isValid={values.cpf && !errors.cpf} />
+                    <Form.Control type="text" placeholder="CPF *" name="cpf" onInput={ cpfMask } onBlur={ validate } onChange={ validate } isInvalid={errors.cpf} isValid={values.cpf && !errors.cpf} />
                     <Form.Control.Feedback type="invalid">
                         { errors.cpf }
                     </Form.Control.Feedback>
@@ -55,7 +57,7 @@ export default function FormCadastro() {
 
             <Form.Group className="mb-3">
                 <FloatingLabel label="Data de Nascimento *" className="mb-3">
-                    <Form.Control type="text" placeholder="Data de Nascimento *" name="datanasc" onBlur={ validate } onChange={ validate } isInvalid={errors.datanasc} isValid={values.datanasc && !errors.datanasc} />
+                    <Form.Control type="text" placeholder="Data de Nascimento *" onInput={ dataMask } name="datanasc" onBlur={ validate } onChange={ validate } isInvalid={errors.datanasc} isValid={values.datanasc && !errors.datanasc} />
                     <Form.Control.Feedback type="invalid">
                         { errors.datanasc }
                     </Form.Control.Feedback>
@@ -91,7 +93,7 @@ export default function FormCadastro() {
 
             <Form.Group className="mb-3">
                 <FloatingLabel label="Celular/WhatsApp *" className="mb-3">
-                    <Form.Control type="tel" placeholder="Celular/WhatsApp *" name="celular" onBlur={ validate } onChange={ validate } isInvalid={errors.celular} isValid={values.celular && !errors.celular} />
+                    <Form.Control type="tel" placeholder="Celular/WhatsApp *" onInput={ celularMask } name="celular" onBlur={ validate } onChange={ validate } isInvalid={errors.celular} isValid={values.celular && !errors.celular} />
                     <Form.Control.Feedback type="invalid">
                         { errors.celular }
                     </Form.Control.Feedback>

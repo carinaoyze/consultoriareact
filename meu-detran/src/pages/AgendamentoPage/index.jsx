@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
+import CabecalhoPage from '../../components/CabecalhoPage';
 
 export default function AgendamentoPage() {
     return (
@@ -9,17 +10,9 @@ export default function AgendamentoPage() {
                 <title>MEU DETRAN | Serviços de Atendimento Presencial</title>
             </Helmet>
             <Container as="section" fluid className="px-5 py-3">
-                <header className="text-secondary mb-3">
-                    <h4 className="text-uppercase fw-bold fs-4 d-flex align-items-center">
-                        <div className="icone-padrao">
-                            <i className="far fa-calendar-check"></i>
-                        </div> 
-                        Agendamento
-                    </h4>
-                    <p className="m-0 fs-6">
-                        Disponível para todos os serviços de atendimento presencial.
-                    </p>
-                </header>
+                <CabecalhoPage titulo="Agendamento" texto="Disponível para todos os serviços de atendimento presencial.">
+                    <i className="far fa-calendar-check"></i>
+                </CabecalhoPage>
             </Container>
         </>
     )

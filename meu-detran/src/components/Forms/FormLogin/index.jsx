@@ -1,10 +1,16 @@
-import React from 'react';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+import { Alert, Button, FloatingLabel, Form } from 'react-bootstrap';
 import useValidations from '../../../hooks/useValidations';
 import useFormValidator from '../../../hooks/useFormValidator';
 import useMasks from '../../../hooks/useMasks';
+import AuthService from '../../../services/AuthService';
+import AuthContext from '../../../contexts/AuthContext';
 
 export default function FormLogin() {
+    const [msgForm, setMsgForm] = useState('');
+    const [isLogando, setLogando] = useState(false);
+    const { setAutenticado } = useContext(AuthContext);
+
     const { cpfMask } = useMasks();
     const { isCPF, isEmpty } = useValidations();
     const { values, errors, isFormValid, validate, resetValidator } = useFormValidator({
@@ -12,15 +18,32 @@ export default function FormLogin() {
         senha: isEmpty('Senha é obrigatória!')
     });
 
-    const handleFormLogin = (e) => {
-        e.preventDefault();
-        
-        e.target.reset();
-        resetValidator();
+    const handleFormLogin = async (e) => {
+        try 
+        {
+            e.preventDefault();
+            const cpf = e.target.cpf.value;
+            const senha = e.target.senha.value;
+            setMsgForm('');
+            setLogando(true);
+
+            await AuthService.autenticar(cpf, senha);
+            
+            e.target.reset();
+            resetValidator();
+            setAutenticado(true);
+        }
+        catch(e)
+        {
+            setMsgForm(e.message);
+            setLogando(false);
+        }
     }
 
     return (
         <Form onSubmit={handleFormLogin}>
+            { msgForm && <Alert variant="danger">{msgForm}</Alert> }
+
             <Form.Group className="mb-3">
                 <FloatingLabel label="CPF *" className="mb-3">
                     <Form.Control type="text" placeholder="CPF *" name="cpf" onInput={ cpfMask } onBlur={ validate } onChange={ validate } isInvalid={errors.cpf} isValid={values.cpf && !errors.cpf} />
@@ -40,8 +63,8 @@ export default function FormLogin() {
             </Form.Group>
 
             <Form.Group>
-                <Button disabled={!isFormValid} type="submit" variant="success" className="w-100 py-3" size="lg">
-                    Entrar
+                <Button disabled={!isFormValid || isLogando} type="submit" variant="success" className="w-100 py-3" size="lg">
+                    { isLogando ? 'Aguarde...' : 'Entrar' }
                 </Button>
             </Form.Group>
 

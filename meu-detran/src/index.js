@@ -5,6 +5,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import MasterLayout from './components/MasterLayout';
 import './assets/scss/global.scss';
 
+/* Providers */
+import { AuthProvider } from './providers/AuthProvider';
+
 /* Páginas */
 import HomePage from './pages/HomePage';
 import VeiculosPage from './pages/VeiculosPage';
@@ -16,21 +19,23 @@ import CredenciamentoPage from './pages/CredenciamentoPage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <MasterLayout>
-          <Switch>
-            <Route component={HomePage} path="/" exact />
-            <Route component={VeiculosPage} path="/veiculos" exact />
-            <Route component={AgendamentoPage} path="/agendamento" exact />
-            <Route component={HabilitacaoPage} path="/habilitacao" exact />
-            <Route component={InfracaoPage} path="/infracao" exact />
-            <Route component={EducacaoPage} path="/educacao" exact />
-            <Route component={CredenciamentoPage} path="/credenciamento" exact />
-          </Switch>
-        </MasterLayout>
-      </BrowserRouter>
-    </HelmetProvider>
+    <AuthProvider>
+      <HelmetProvider>
+        <BrowserRouter>
+          <MasterLayout>
+            <Switch>
+              <Route component={HomePage} path="/" exact />
+              <Route component={VeiculosPage} path="/veiculos" exact />
+              <Route component={AgendamentoPage} path="/agendamento" exact />
+              <Route component={HabilitacaoPage} path="/habilitacao" exact />
+              <Route component={InfracaoPage} path="/infracao" exact />
+              <Route component={EducacaoPage} path="/educacao" exact />
+              <Route component={CredenciamentoPage} path="/credenciamento" exact />
+            </Switch>
+          </MasterLayout>
+        </BrowserRouter>
+      </HelmetProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

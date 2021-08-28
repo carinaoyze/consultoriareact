@@ -1,0 +1,21 @@
+.nav-pills {
+
+    .nav-item {
+
+        .nav-link {
+            color: #333;
+            border-bottom: 1px solid #dee2e6;
+            cursor: pointer;
+        }
+
+        &:last-of-type .nav-link {
+            border-bottom: none;
+        }
+    }
+}
+
+.nav-pills .nav-link.active {
+    background-color: #cdd4cf;
+    color: #4BA661;
+    font-weight: 600;
+}

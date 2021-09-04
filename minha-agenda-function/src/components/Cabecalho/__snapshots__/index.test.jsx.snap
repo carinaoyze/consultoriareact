@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Componente Cabeçalho Quando o cabeçalho for renderizado, deve receber as propriedades corretamente 1`] = `
+<div
+  class="jumbotron cabecalho"
+>
+  <h1
+    class="display-4"
+  >
+    Minha Agenda
+  </h1>
+  <p
+    class="lead"
+  >
+    Confira abaixo sua lista de contatos cadastrados.
+  </p>
+</div>
+`;

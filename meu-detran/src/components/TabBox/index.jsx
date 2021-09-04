@@ -51,9 +51,7 @@ const TabContent = ({ tabKey, children, acessoProtegido }) => {
     const { autenticado } = useContext(AuthContext);
     return (
         <Tab.Pane eventKey={ tabKey }>
-            {
-                !acessoProtegido || autenticado ? children : <ModalLogin showModal={true} hideBtnLogin={true} showCloseButton={false} />
-            }
+            { ((acessoProtegido && autenticado) || !acessoProtegido) ? children : <ModalLogin showModal={true} hideBtnLogin={true} showCloseButton={false} /> }
         </Tab.Pane>
     )
 }

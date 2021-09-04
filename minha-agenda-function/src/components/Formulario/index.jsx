@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { ContatosActions } from '../../store/ducks/contatos';
 
-function Formulario({ adicionarContatoCallback }) {
+function Formulario() {
+    const dispatch = useDispatch();
     const [nome, setNome] = useState('');
     const [tel, setTelefone] = useState('');
     let isBotaoDisabled = !nome || !tel;
 
     const handleForm = (e) => {
         e.preventDefault();
-        adicionarContatoCallback( nome, tel );
+        const novoContato = { nome, tel };
+        dispatch({ type: ContatosActions.ADD_CONTATO, payload: { novoContato } });
+        
         setNome('');
         setTelefone('');
     }

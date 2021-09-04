@@ -1,6 +1,11 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ContatosActions } from '../../store/ducks/contatos';
 
-function TabelaContatos({ listaContatos, excluirContatoCallback }) {
+function TabelaContatos() {
+    const listaContatos = useSelector(state => state.contatos);
+    const dispatch = useDispatch();
+
     return (
         <table className="table table-bordered table-striped">
             <thead className="thead-light">
@@ -16,9 +21,9 @@ function TabelaContatos({ listaContatos, excluirContatoCallback }) {
                         return (
                             <tr key={index}>
                                 <td>{contato.nome}</td>
-                                <td>{contato.telefone}</td>
+                                <td>{contato.tel}</td>
                                 <td>
-                                    <button onClick={() => excluirContatoCallback(index)} className="btn btn-danger">
+                                    <button onClick={() => dispatch({ type: ContatosActions.REMOVE_CONTATO, payload: { index } })} className="btn btn-danger">
                                         Excluir
                                     </button>
                                 </td>
